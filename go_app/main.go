@@ -1,22 +1,19 @@
-// Copyright (c) 2022 Janet DoAll rights reserved
-//
 // Created by: Janet Do
-//This program generates a different cat API everytime it is run 
+// Created on: Dec 2022
+//
+// This program displays, "Random Cat Image Generator, API"
+
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 )
 
-type CatData struct {
-	URL string `json:"url"`
-}
-
-func getCat(urlAddress string) {
-	response, err := http.Get(urlAddress)
+func main() {
+	client := http.Client{}
+	response, err := client.Get("https://api.thecatapi.com/v1/images/search")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -30,25 +27,8 @@ func getCat(urlAddress string) {
 		return
 	}
 
-	var jsonData []CatData
-	err = json.Unmarshal(body, &jsonData)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	if len(jsonData) > 0 {
-		fmt.Println(jsonData[0].URL)
-		// Update the HTML with the cat image
-		// ...
-	} else {
-		fmt.Println("No cat data found.")
-	}
-}
-
-func main() {
-	urlAddress := "https://api.thecatapi.com/v1/images/search"
-	getCat(urlAddress)
-
-	fmt.Println("\nDone.")
+	fmt.Println("")
+	fmt.Println(string(body))
+	fmt.Println("\nHave a random image of a cat")
+	fmt.Println("\n\nDone")
 }
