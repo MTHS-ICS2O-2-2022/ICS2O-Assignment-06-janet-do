@@ -1,3 +1,7 @@
+// Copyright (c) 2022 Janet DoAll rights reserved
+//
+// Created by: Janet Do
+//This program generates a different cat API everytime it is run 
 package main
 
 import (
@@ -11,8 +15,8 @@ type CatData struct {
 	URL string `json:"url"`
 }
 
-func getCat(URLAddress string) {
-	response, err := http.Get(URLAddress)
+func getCat(urlAddress string) {
+	response, err := http.Get(urlAddress)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -43,8 +47,8 @@ func getCat(URLAddress string) {
 }
 
 func main() {
-	URLAddress := "https://api.thecatapi.com/v1/images/search"
-	getCat(URLAddress)
+	urlAddress := "https://api.thecatapi.com/v1/images/search"
+	getCat(urlAddress)
 
 	fmt.Println("\nDone.")
 }
